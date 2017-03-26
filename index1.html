@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Data Visualization - Michael Phillips</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    
+    <style type="text/css">
+      #chart1 {
+        margin: auto;
+        width: 50%;
+        height: 50%;
+        padding: 20x;
+        float:left;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="chart1">
+      <script type="text/javascript">
+        var svg = dimple.newSvg("#chart1", 1000, 600);
+        
+          d3.csv("Prosper_Data_Final.csv", function (data) {
+            var myChart = new dimple.chart(svg, data);
+            myChart.setMargins('10%', '10%', '10%', '10%');
+            var y = myChart.addCategoryAxis("y", "Occupation");
+            y.fontSize = '15px'
+            var x = myChart.addMeasureAxis("x", "BorrowerAPR");
+            x.fontSize = '15px'
+            var s = myChart.addSeries(null, dimple.plot.bar);
+            myChart.draw();
+
+            s.afterDraw = function (shape, data) {
+              var s = d3.select(shape),
+                rect = {
+                  x : parseFloat(s.attr("x")),
+                  y : parseFloat(s.attr("y")),
+                  width : parseFloat(s.attr('width')),
+                  height : parseFloat(s.attr('height')),
+                };
+                if (rect.height >= 1) {
+                  svg.append("text")
+                  .attr("x", rect.x + rect.width / 2).attr("y", height +25)
+                  .style("text-anchor", 'middle').style("font-size", "10px").style("font-family", "sans-serif")
+                  .style("opacity", 0.6)
+                  .text(String(data.xField[1]));
+              }                
+            }
+          });
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = 'utf-8'>
+    <title>Data Visualization - Michael Phillips</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    <style> 
+
+    #chart1 {
+      
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      float: center;
+      min-width: 25px;
+      position:fixed;
+      top:200px;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        font-size: 12px;
+        border-collapse: collapse;
+        width: 400px;
+        position: fixed;
+        top:198px;
+        bottom: 60px;
+        left: 1000px;        
+    }
+
+    caption {
+      font-size: 20px;
+      }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    #title {      
+      font-family: arial,sans-serif;      
+      position:fixed;
+      left:220px;
+      top:1px;
+      min-width: 50px;
+      white-space:nowrap;
+    }
+
+    #description {
+      font-family: arial,sans-serif;
+      width: 1050px;
+      position:fixed;
+      top:60px;
+      left:300px;
+    }
+
+    #graph_title {
+      font-family: arial,sans-serif;
+      font-size:20px;
+      position:fixed;
+      white-space:nowrap;
+      top: 220px;
+      left:103px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id='wrapper'>
+      <div id="chart1">
+        <script type="text/javascript">
+
+          var svg = dimple.newSvg("#chart1", 800, 600);   
+
+            //create bar graph      
+            d3.csv("Prosper_Data_Final.csv", function (data) {              
+              var myChart = new dimple.chart(svg, data);              
+              var y = myChart.addCategoryAxis("y", "Occupation");              
+              y.hidden = true;
+              var x = myChart.addMeasureAxis("x", "BorrowerAPR");
+              x.title = 'Borrower APR'
+              x.fontSize = '15px';
+              var s = myChart.addSeries(null, dimple.plot.bar);
+              
+              //write y-axis labels inside bars
+              s.afterDraw = function (shape, data) {                
+                
+                //select shapes, and find dimensions
+                var s = d3.select(shape),
+                    rect = {
+                      x: parseFloat(s.attr("x")),
+                      y: parseFloat(s.attr("y")),
+                      width: parseFloat(s.attr("width")),
+                      height: parseFloat(s.attr('height')),                      
+                    };     
+
+                  //write and format text from loaded data 
+                  svg.append('text')
+                  .attr("x", rect.x + 30 / 2).attr('y', rect.y + rect.height -2)
+                  .style('text-anchor', 'left')
+                  .style('font-family', 'sans-serif')
+                  .style('opacity', 0.9)
+                  .style('pointer-events', 'none')
+                  .style('font-weight', 'bold')
+                  .text(data.cy);                
+                };
+              
+              //change colors of the bars  
+              myChart.defaultColors = [
+                new dimple.color('#E1974C')
+                ] 
+
+              myChart.draw();
+            });
+        </script>
+      </div>
+      <div id="title">
+        <h1>Your choices in the job market now can affect your financial 
+        well-being later in life.</h1>
+      </div>
+      <div id="description">
+        <h2>How? Let's find out. The visualizations below come from an 
+        analysis of more than 100,000 loans issued by Prosper Loans, an online 
+        loan platform. Remember though, these are overall trends in the data.
+        You can be successful no matter what path you take through life!</h2>
+      </div>
+      <div id='graph_title'>
+        <h3>Sampled Occupations from Prosper Loans vs. Borrower APR</h3>
+      </div>
+      <div id="table">
+        <table>
+          <caption>Yearly Salaries for the Sampled Occupations</caption>
+          <tr>
+            <th>Occupation</th>
+            <th>Stated Yearly Income</th>
+          </tr>
+          <tr>
+            <td>Architect</td>
+            <td>$75,827.06</td>
+          </tr>
+          <tr>
+            <td>Car Dealer</td>
+            <td>$75,765.07</td>
+          </tr>
+          <tr>
+            <td>Computer Programmer</td>
+            <td>$85,728.00</td>
+          </tr>
+          <tr>
+            <td>Dentist</td>
+            <td>$126,576.79</td>
+          </tr>
+          <tr>
+            <td>Doctor</td>
+            <td>$179,243.31</td>
+          </tr>
+          <tr>
+            <td>Fireman</td>
+            <td>$74,400.89</td>
+          </tr>
+          <tr>
+            <td>Judge</td>
+            <td>$129,697.64</td>
+          </tr>
+          <tr>
+            <td>Nurse (RN)</td>
+            <td>$81,030.67</td>
+          </tr>
+          <tr>
+            <td>Police Officer/Correction Officer</td>
+            <td>$74,736.23</td>
+          </tr>
+          <tr>
+            <td>Retail Management</td>
+            <td>$59,253.97</td>
+          </tr>
+          <tr>
+            <td>Sales - Commission</td>
+            <td>$80,761.92</td>
+          </tr>
+          <tr>
+            <td>Sales - Retail</td>
+            <td>$42,902.69</td>
+          </tr>
+          <tr>
+            <td>Student - College Freshman</td>
+            <td>$19,301.63</td>
+          </tr>
+          <tr>
+            <td>Student - College Senior</td>
+            <td>$15,595.84</td>
+          </tr>
+          <tr>
+            <td>Teacher</td>
+            <td>$55,233.41</td>
+          </tr>
+          <tr>
+            <td>Teacher's Aide</td>
+            <td>$25,870.70</td>
+          </tr>
+          <tr>
+            <td>Tradesman - Carpenter</td>
+            <td>$53,771.63</td>
+          </tr>
+          <tr>
+            <td>Tradesman - Electrician</td>
+            <td>$67,962.67</td>
+          </tr>
+          <tr>
+            <td>Truck Driver</td>
+            <td>$57,319.86</td>
+          </tr>
+          <tr>
+            <td>Waiter/Waitress</td>
+            <td>$29,452.15</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
