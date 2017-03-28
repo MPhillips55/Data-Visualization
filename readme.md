@@ -1,6 +1,10 @@
 Data Visualization Project - Michael Phillips
 
-SUMMARY: I chose to use the Prosper Loans dataset which I was familiar with from previous 
+## To run the code locally:
+  * Clone the repo
+  * load index.html in your browser (chrome or firefox suggested)
+
+SUMMARY: I chose the Prosper Loans dataset which I was familiar with from previous 
 projects. One aspect of the data that interested me was how occupations were related to APR's.
 I imagined my audience was high schoolers or college students who had to think about where their 
 life would take them. I wanted them to have an idea of how their choices could affect their lives
