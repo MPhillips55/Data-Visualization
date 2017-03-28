@@ -2,7 +2,8 @@ Data Visualization Project - Michael Phillips
 
 ## To run the code locally:
   * Clone the repo
-  * load index.html in your browser (chrome or firefox suggested)
+  * load index.html in your browser (chrome or firefox suggested), ensure the data file is
+  in the same folder with index.html
 
 SUMMARY: I chose the Prosper Loans dataset which I was familiar with from previous 
 projects. One aspect of the data that interested me was how occupations were related to APR's.
@@ -44,31 +45,5 @@ her that this would perhaps make the trend in the data more clear, but I thought
 read the chart with the labeled horizontal bars. She also suggested a brief summary/description that 
 would aid people in understanding what the chart meant as it was pretty bare-bones when she saw it. I 
 did implement this suggestion.
-
-RESOURCES USED:
-
-In addition to the Udacity forums and course materials I used the following resources:
-
-http://stackoverflow.com/questions/36132749/pandas-plotting-from-pivot-table
-
-http://pbpython.com/pandas-pivot-table-explained.html
-
-http://stackoverflow.com/questions/34023918/make-new-column-in-panda-dataframe-by-adding-values-from-other-columns
-
-http://stackoverflow.com/questions/17791926/how-to-rotate-x-axis-text-in-dimple-js
-
-https://www.w3schools.com/html/html_tables.asp
-
-http://stackoverflow.com/questions/8841845/prevent-div-from-moving-while-resizing-the-page
-
-https://www.w3schools.com/css/css_positioning.asp
-
-http://stackoverflow.com/questions/7572465/prevent-html-elements-from-squishing-when-resolution-too-small
-
-http://stackoverflow.com/questions/18548021/css-how-to-stop-an-element-being-squashed-by-container
-
-http://stackoverflow.com/questions/6069981/disable-text-wrapping
-
-http://www.java2s.com/Code/HTMLCSS/Tags/captionfontsize160.htm
 
  
